@@ -3,21 +3,12 @@ class Solution:
         q = deque()
         ans = []
 
-        for i in range(k):
-            while q and nums[i] > q[-1]:
+        for i in range(len(nums)):
+            while q and q[0] <= i - k:
+                q.popleft()
+            while q and nums[q[-1]] < nums[i]:
                 q.pop()
-            q.append(nums[i])
-        ans.append(q[0])
-
-        left = 0
-
-        for right in range(k,len(nums)):
-            while q and nums[right] > q[-1]:
-                q.pop()
-            q.append(nums[right])
-            while right - left + 1 > k:
-                if nums[left] == q[0]:
-                    q.popleft()
-                left += 1
-            ans.append(q[0])
+            q.append(i)
+            if i >= k-1:
+                ans.append((nums[q[0]]))
         return ans
