@@ -12,7 +12,10 @@ class Solution:
                     break
                 val = int(num[i:j+1])
                 path.append(val)
-                
+                if len(path) >= 3:
+                    if path[-1] != path[-2] + path[-3]:
+                        path.pop()
+                        continue
                 if split(j+1,path):
                     return True
                 path.pop()
