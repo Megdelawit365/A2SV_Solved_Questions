@@ -26,8 +26,5 @@ class Solution:
                     temp.append(None)
             if temp and temp != list(reversed(temp)):
                 return False
-            if temp:
-                print(temp)
-
         return True
 
