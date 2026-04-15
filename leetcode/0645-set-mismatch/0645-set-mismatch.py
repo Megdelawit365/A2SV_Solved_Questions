@@ -1,11 +1,17 @@
 class Solution:
     def findErrorNums(self, nums: List[int]) -> List[int]:
-        count = Counter(nums)
-        ans = [0,0]
-        for n in range(1,len(nums)+1):
-            if count[n] == 2:
-                ans[0] = n
-            if count[n] == 0:
-                ans[1] = n
+        ans = []
+        for i in range(len(nums)):
+            if nums[abs(nums[i])-1] < 0:
+                ans.append(abs(nums[i]))
+                continue
+            nums[abs(nums[i])-1] *= -1
         
+        for i in range(len(nums)):
+            if nums[i] >= 0:
+                ans.append(i+1)
+                break
+
         return ans
+
+        # 4,8,1,-5,2,7,4,6
